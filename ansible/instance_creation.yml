@@ -1,0 +1,57 @@
+---
+- hosts: localhost
+  remote_user: ubuntu
+  tasks:
+    - name: Setting up security group
+      ec2_group:
+         name: ansible_security_group
+         description: Rules allowing Traffic on port 22 and 80
+         region: us-west-2
+         rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: 0.0.0.0/0
+         rules_egress:
+          - proto: all
+            cidr_ip: 0.0.0.0/0
+
+    - name: Creating new ec2 instance
+      ec2:
+         key_name: harshg7_ubuntu
+         region: us-west-2
+         aws_zone: us-west-2b
+         instance_type: t2.micro
+         image: ami-5e63d13e
+         wait: yes
+         wait_timeout: 2500
+         count: 1
+         instance_tags:
+           Name: Demo
+           Owner: test1
+         monitoring: no
+         vpc_subnet_id: subnet-cc1954a8
+         assign_public_ip: yes
+         group: ansible_security_group
+      register: ec2_out
+    - add_host: hostname={{ item.public_ip }} groupname="myapp,ec2hosts"
+      with_items: ec2_out.instances
+  
+    - name: Wait for instances to listen on port 22
+      wait_for: state=started  host={{ item.public_dns_name }} port=22
+      with_items: ec2_out.instances 
+ # Run your specific roles that install and configure your application
+
+- hosts: ec2hosts
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo 
+  tasks:
+  - name: install packages
+    apt: name={{ item }} update_cache=yes state=latest
+    with_items:
+      - nginx
