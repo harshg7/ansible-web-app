@@ -13,5 +13,7 @@ From https://github.com/harshg7/ansible-web-app
 ubuntu@ip-172-31-18-17:~$ git checkout master
 Branch master set up to track remote branch master from origin.
 Already on 'master'
+ubuntu@ip-172-31-18-17:~$ ls
+ansible  provision.sh
 
 ```
