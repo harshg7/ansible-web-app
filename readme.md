@@ -1,8 +1,9 @@
 
+# Provision instances and deploy applications.
+
 This script allows you to launch an instance on Amazon-EC2.
 Running the script automatically provisions machines and installs web application ( nginix used here )
 It then changes nginx config to include maintenance mode and restart nginx service.
-
 Before running the script , git clone and set the script paths in yml files respectively .
 
 Before You Start
