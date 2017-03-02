@@ -2,19 +2,31 @@
 # Provision instances and deploy applications.
 
 This script allows you to launch an instance on Amazon-EC2.
+
 Running the script automatically provisions machines and installs web application ( nginix used here )
+
 It then changes nginx config to include maintenance mode and restart nginx service.
+
 Before running the script , git clone and set the script paths in yml files respectively .
 
 Before You Start
+
 Create an Amazon EC2 keypair for yourself. Make sure that you set the permissions for the private key file to 600 (i.e. only you can read and write it) so that ssh will work.
-Whenever you want to use this script , set the environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to your Amazon EC2 access key ID and secret access key. These can be obtained from the AWS homepage by clicking Account > Security Credentials > Access Credentials.
+Whenever you want to use this script , set the environment variables 
+
+AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to your Amazon EC2 access key ID and secret access key. 
+Created AWS secret key and access key using IAM users and policies.
+
+These can be obtained from the AWS homepage by clicking Account > Security Credentials > Access Credentials.
 Launching An Instance
 
 Git clone https://github.com/harshg7/ansible-web-app.git into your local machine
 Export the environment variables from your machine before you run the script.
+
 For example:
+
 export AWS_SECRET_ACCESS_KEY= AaBcDeFg
+
 export AWS_ACCESS_KEY_ID= abcd123
 
 Running the script
