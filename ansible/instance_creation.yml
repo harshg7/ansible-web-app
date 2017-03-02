@@ -51,7 +51,28 @@
   become: yes
   become_method: sudo 
   tasks:
+  - name: pause start
+    pause:
+     minutes: 4
   - name: install packages
     apt: name={{ item }} update_cache=yes state=latest
     with_items:
       - nginx
+  - name: nginx | copy config file
+    copy:
+      src: /home/ubuntu/ansible/files/default
+      dest: /etc/nginx/sites-enabled/default
+      owner: root
+      group: root
+      mode: 0644
+  - name: nginx | copy maintainance file
+    copy:
+      src: /home/ubuntu/ansible/files/maintenance_off.html
+      dest: /usr/share/nginx/html/maintenance_off.html
+      owner: root
+      group: root
+      mode: 0644
+  - name: NGINX | Re-Starting NGINX
+    service:
+     name: nginx
+     state: restarted
