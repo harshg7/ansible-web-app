@@ -3,7 +3,7 @@ set -u # Variables must be explicit
 set -e # If any command fails, fail the whole thing
 set -o pipefail
 # Make sure SSH knows to use the correct pem
-ssh-add ansible/myapp.pem
+ssh-add ansible/harshg7_ubuntu.pem
 #ssh-add -l
 # Load the AWS keys
 export AWS_ACCESS_KEY="AKIAIT7CUHQ2VKK72HGQ"
