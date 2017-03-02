@@ -15,5 +15,7 @@ Branch master set up to track remote branch master from origin.
 Already on 'master'
 ubuntu@ip-172-31-18-17:~$ ls
 ansible  provision.sh
+ubuntu@ip-172-31-18-17:~$ chmod 600 ansible/harshg7_ubuntu.pem
+ubuntu@ip-172-31-18-17:~$ ./provision.sh
 
 ```
