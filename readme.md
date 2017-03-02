@@ -2,32 +2,33 @@
 # Provision instances and deploy applications.
 
 This script allows you to launch an instance on Amazon-EC2.
-Running the script automatically provisions machines and installs web application ( nginix used here )
-It then changes nginx config to include maintenance mode and restart nginx service.
+- Running the script automatically provisions machines and installs web application ( nginix used here )
+- It then changes nginx config to include maintenance mode and restart nginx service.
 
 Before running the script , git clone and set the script paths in yml files respectively .
 
-Before You Start
+# Before You Start
 
-Create an Amazon EC2 keypair for yourself. Make sure that you set the permissions for the private key file to 600 (i.e. only you can read and write it) so that ssh will work.
-Whenever you want to use this script , set the environment variables 
+- Create an Amazon EC2 keypair for yourself.
+- Make sure that you set the permissions for the private key file to 600 (i.e. only you can read and write it) so that ssh will work.
+- Whenever you want to use this script , set the environment variables 
 
 AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to your Amazon EC2 access key ID and secret access key. 
-Created AWS secret key and access key using IAM users and policies.
+- Created AWS secret key and access key using IAM users and policies here.
 
 These can be obtained from the AWS homepage by clicking Account > Security Credentials > Access Credentials.
 Launching An Instance
 
-Git clone https://github.com/harshg7/ansible-web-app.git into your local machine
+# Git clone https://github.com/harshg7/ansible-web-app.git into your local machine
 Export the environment variables from your machine before you run the script.
 
-For example:
+# For example:
 
-export AWS_SECRET_ACCESS_KEY= AaBcDeFg
+- export AWS_SECRET_ACCESS_KEY= AaBcDeFg
 
-export AWS_ACCESS_KEY_ID= abcd123
+- export AWS_ACCESS_KEY_ID= abcd123
 
-Running the script
+# Running the script
 Make sure Ansible is installed in your system and initially git clone this repository.
 Git clone gives you three different files:
 1. ansible/instance_creation.yml 
@@ -40,7 +41,7 @@ Git clone gives you three different files:
 
 Making sure the above necessary steps are followed, begin the programming below :
 
-Login process to my instance:
+# Login process to my instance:
 -----------------------
 Run : 
 ssh -i my_key.pem ubuntu@i.p.address
@@ -51,17 +52,17 @@ Replace the contents at /usr/share/nginx/html/ with the new version of applicati
 
 # How we scale this solution out to multiple application servers in an automated fashion.
 Edit ansible-web-app/ansible/instance_creation.yml
-In order to scale the count values ; edit ansible-web-app/ansible/instance_creation.yml ( line 32:count : ) to your count .
+- In order to scale the count values ; edit ansible-web-app/ansible/instance_creation.yml ( line 32:count : ) to your count .
 This way ,we could get 2,3 or 5 web-apps running on different ec2 instances. 
-Also you could use Auto-Scaling group on AWS alterantively.
+- Also you could use Auto-Scaling group on AWS alterantively.
 
 # If this were a true production deployment.
-For true deployment there is 99.9% availablity. So we can not put into maintenance mode directly. 
-We need to setup a parallel instance with same web-app and connect this new and old web app to load balancer (Elastic load balancer in AWS ).
-Then we could make one off-line ; work on it.
+- For true deployment there is 99.9% availablity. So we can not put into maintenance mode directly. 
+- We need to setup a parallel instance with same web-app and connect this new and old web app to load balancer (Elastic load balancer in AWS ).
+- Then we could make one off-line ; work on it.
 
-In depth :
-#When you run playbook:
+# Script in depth :
+When you run playbook:
 # Running custom playbook(sample running)
 ------------------------
 ubuntu@ipaddress:~$ ./provision.sh
