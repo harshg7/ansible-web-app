@@ -1,8 +1,9 @@
-Before running the script , git clone and set the script paths in yml files respectively .
 
 This script allows you to launch an instance on Amazon-EC2.
 Running the script automatically provisions machines and installs web application ( nginix used here )
 It then changes nginx config to include maintenance mode and restart nginx service.
+
+Before running the script , git clone and set the script paths in yml files respectively .
 
 Before You Start
 Create an Amazon EC2 keypair for yourself. Make sure that you set the permissions for the private key file to 600 (i.e. only you can read and write it) so that ssh will work.
@@ -53,9 +54,10 @@ In depth :
 # Running custom playbook(sample running)
 ------------------------
 ubuntu@ipaddress:~$ ./provision.sh
-i.p.address               : ok=6    changed=4    unreachable=0    failed=0
+```
+newec2ipaddress               : ok=6    changed=4    unreachable=0    failed=0
 localhost                  : ok=5    changed=2    unreachable=0    failed=0
-
+```
 # How Maintenance works
 if [/usr/share/nginx/html/maintenance_on.html] is present on the new instance its in maintenance mode ON
 or else its maintenance mode OFF
