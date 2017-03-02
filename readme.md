@@ -46,7 +46,7 @@ Making sure the above necessary steps are followed, begin the programming below 
 Run : 
 ssh -i my_key.pem ubuntu@i.p.address
 
-Deliverables:
+# Deliverables:
 # How to push new version of web-app
 Replace the contents at /usr/share/nginx/html/ with the new version of application files by unzipping that archive in this directory.
 
