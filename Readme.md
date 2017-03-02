@@ -17,5 +17,8 @@ ubuntu@ip-172-31-18-17:~$ ls
 ansible  provision.sh
 ubuntu@ip-172-31-18-17:~$ chmod 600 ansible/harshg7_ubuntu.pem
 ubuntu@ip-172-31-18-17:~$ ./provision.sh
+PLAY RECAP *********************************************************************
+52.42.129.15               : ok=6    changed=4    unreachable=0    failed=0
+localhost                  : ok=5    changed=2    unreachable=0    failed=0
 
 ```
